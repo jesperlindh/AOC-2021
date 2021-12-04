@@ -1,4 +1,4 @@
-function find_depth(depths)
+function find_increases(depths)
     increases = 0
     previous = maximum(depths) + 1
     for depth in depths
@@ -21,6 +21,20 @@ function read_input()
     return depths
 end
 
+function get_windows(depths)
+    windows = []
+    window = 0
+    for i = 1:(length(depths)-2)
+        window = sum(depths[i:i+2])
+        push!(windows, window)
+    end
+
+    return windows
+end
+
 depths = read_input()
-increases = find_depth(depths)
+increases = find_increases(depths)
+windows = get_windows(depths)
+increases_windows = find_increases(windows)
 println(increases)
+println(increases_windows)
